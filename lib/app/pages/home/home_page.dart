@@ -41,6 +41,8 @@ class HomePage extends StatelessWidget {
             label: 'Perfil',
           ),
         ],
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         selectedLabelStyle: const TextStyle(color: Colors.black),
         unselectedLabelStyle: const TextStyle(color: Colors.black),
       ),
