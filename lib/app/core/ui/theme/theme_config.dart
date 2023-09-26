@@ -6,20 +6,20 @@ import 'package:flutter/material.dart';
 class ThemeConfig {
   ThemeConfig._();
   static final _defaultInputBorder = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(7),
+    borderRadius: BorderRadius.circular(16),
     borderSide: BorderSide(color: Colors.grey[400]!),
   );
 
   static final theme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      centerTitle: true,
-      iconTheme: IconThemeData(
-        color: Colors.black,
-      ),
-    ),
+    appBarTheme: AppBarTheme(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        titleTextStyle: TextStyle(color: ColorsApp.i.primary)),
     primaryColor: ColorsApp.i.primary,
     colorScheme: ColorScheme.fromSeed(
       seedColor: ColorsApp.i.primary,
