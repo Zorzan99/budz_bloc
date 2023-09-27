@@ -1,3 +1,4 @@
+import 'package:budz_bloc/app/core/rest_client/custom_dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,11 @@ class ApplicationBinding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: const [],
+      providers: [
+        Provider(
+          create: (context) => CustomDio(),
+        ),
+      ],
       child: child,
     );
   }
