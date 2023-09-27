@@ -1,11 +1,48 @@
+import 'dart:convert';
+
+import 'package:budz_bloc/app/core/database/CRUD/insert_d_b.dart';
+import 'package:budz_bloc/app/core/database/database_sqlite.dart';
 import 'package:budz_bloc/app/core/ui/helpers/size_extensions.dart';
 import 'package:budz_bloc/app/core/ui/styles/colors_app.dart';
 import 'package:budz_bloc/app/core/ui/styles/text_styles.dart';
+import 'package:budz_bloc/app/models/id_pets_model.dart';
+import 'package:budz_bloc/app/models/list_pets_model.dart';
 import 'package:budz_bloc/app/pages/home/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Database database;
+  @override
+  void initState() {
+    super.initState();
+    startDB();
+  }
+
+  Future<void> startDB() async {
+    database = await DatabaseSqlite().openConnection();
+    insertValue(database);
+  }
+
+  Future<void> insertValue(Database database) async {
+    IdPetsModel idPetsModel1 =
+        IdPetsModel(id: "48E792A6-EF69-467E-B9FB-E4C272AE23AF");
+    IdPetsModel idPetsModel2 =
+        IdPetsModel(id: "B05C4E66-4E5E-4B4D-8BDE-B7AFC9F476FF");
+    ListPetsModel listPets = ListPetsModel(pets: [idPetsModel1, idPetsModel2]);
+    for (var element in listPets.pets) {
+      final bytes = utf8.encode(element.id);
+      final base64Str = base64.encode(bytes);
+      InsertDB.InsertTablePets(database, base64Str);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
