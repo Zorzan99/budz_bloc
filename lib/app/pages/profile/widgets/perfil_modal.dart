@@ -5,12 +5,14 @@ class PerfilModal extends StatelessWidget {
   final String text;
   final IconData iconLeading;
   final IconData iconTrailing;
+  final VoidCallback onTap;
 
   const PerfilModal(
       {Key? key,
       required this.text,
       required this.iconLeading,
-      required this.iconTrailing})
+      required this.iconTrailing,
+      required this.onTap})
       : super(key: key);
 
   @override
@@ -21,19 +23,22 @@ class PerfilModal extends StatelessWidget {
         borderRadius: BorderRadius.circular(17),
       ),
       padding: const EdgeInsets.all(15.0),
-      child: Row(
-        children: [
-          Icon(
-            iconLeading,
-          ),
-          const SizedBox(width: 20),
-          Text(text, style: context.textStyles.textRegular),
-          const Spacer(),
-          Icon(
-            iconTrailing,
-            size: 13, // Cor do segundo ícone
-          ),
-        ],
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Icon(
+              iconLeading,
+            ),
+            const SizedBox(width: 20),
+            Text(text, style: context.textStyles.textRegular),
+            const Spacer(),
+            Icon(
+              iconTrailing,
+              size: 13, // Cor do segundo ícone
+            ),
+          ],
+        ),
       ),
     );
   }

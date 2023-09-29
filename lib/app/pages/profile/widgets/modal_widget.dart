@@ -34,7 +34,10 @@ class ModalWidget extends StatelessWidget {
                 label: 'EXCLUIR CONTA',
                 width: context.screenWidth,
                 backgroundColor: Colors.red,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/deletionPage', (route) => false);
+                },
                 borderRadius: BorderRadius.circular(16),
               ),
               const SizedBox(height: 15),
